@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.js" integrity="sha512-H05oT7BAjM9Ai1IaFX9zr61NtE2e1P0MkTz3AZXBnseaJSAOt2FGMFJ+vVGutaJxEGA1jxUiYsTBYQNE08/Erw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    class SceneA extends Phaser.Scene{
+        constructor() {
+            super('SceneA');
+        }
+        preload() {
+            this.load.image("bear", "noun-bear-5678307")
+            this.load.image("bear2", "noun-bear2-5678307")
+
+        }
+        create(){
+            let s = this.add.text(330,300,"click to begin");
+            s.scale = 2;
+            this.add.rectangle(100,100, 40, 30,0xff0000);
+            this.add.rectangle(150,150, 40, 30,0x0000ff);
+            this.add.rectangle(200,200, 40, 30,0x00ff00);
+            let h = this.add.sprite(50,50,"bear");
+            h.scale = 1;
+            let g = this.add.sprite(170,50,"bear2");
+            g.scale = 1;
+            this.input.on('pointerdown', () => this.scene.start('SceneB') (),
+        {
+        }, this);
+    }
+}
+
+    class SceneB extends Phaser.Scene{
+        constructor() {
+            super('SceneB');
+        }
+        preload() {
+            this.load.image('logo', 'tmp-6449b61235219');
+        }
+        create(){
+            let s = this.add.text(330,300,"Begin building your dream house.\n Let your creativity fly.");
+            let m = this.add.sprite(50,50,"logo");
+            m.scale = 1;
+            this.input.on('pointerdown', () => this.scene.start('SceneC') (),
+        {
+        }, this);
+    }
+}
+    class SceneC extends Phaser.Scene{
+        constructor() {
+            super('SceneC');
+        }
+        preload() {
+        }
+        create(){
+            let s = this.add.text(330,300,"Play\nSettings\nQuit");
+        
+            this.input.on('pointerdown', () => this.scene.start('SceneA') (),
+        {
+
+        }, this);
+    }
+}
+
+  new Phaser.Game({ 
+        width: 1920/2,
+        height: 1080/2,
+        scene:[SceneA, SceneB, SceneC]
+    });
+</script>
+</head>
+<body>
+</body>
+D1 B: Cinematic
+</html>
